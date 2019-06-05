@@ -18,7 +18,7 @@ function chooseOption(options, { s3, params }) {
 function processOption(option, options, { s3, params }) {
   const { callback, input } = options[option];
   if (input) {
-    return askForUserInput(callback, { s3, params, input });
+    return askForUserInput(callback, { s3, params, input, options });
   }
   callback({ s3, params })
   .then(res => {
@@ -30,10 +30,13 @@ function processOption(option, options, { s3, params }) {
     console.groupEnd();
     chooseOption(options, { s3, params });
   })
-  .catch(err => console.error(err));
+  .catch(err => {
+    console.error(err);
+    chooseOption(options, { s3, params });
+  });
 }
 
-function askForUserInput(callback, { s3, params, input }) {
+function askForUserInput(callback, { s3, params, input, options }) {
   inquirer.prompt([
     {
       name: 'input',
@@ -48,7 +51,20 @@ function askForUserInput(callback, { s3, params, input }) {
       }
     },
   ]).then(({ input }) => {
-    callback({ s3, params, input });
+    callback({ s3, params, input })
+    .then(res => {
+      console.group();
+      console.log('result:')
+      console.group();
+      console.log(res);
+      console.groupEnd();
+      console.groupEnd();
+      chooseOption(options, { s3, params });
+    })
+    .catch(err => {
+      console.error(err);
+      chooseOption(options, { s3, params });
+    });
   });
 }
 

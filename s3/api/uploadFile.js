@@ -15,7 +15,7 @@ module.exports = function uploadFile({ s3, params, input }) {
             reject(err);
             return;
           }
-          resolve('Upload success');
+          resolve(`Successfully uploaded file ${input}`);
         });
       });
     } catch (err) {

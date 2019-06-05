@@ -1,8 +1,10 @@
 const chalk = require('chalk');
 const figlet = require('figlet');
-const { s3, params } = require('./s3/connector.js')();
+const { s3, params } = require('./s3/connector')();
 const listAll = require('./s3/api/listAll');
 const uploadFile = require('./s3/api/uploadFile');
+const listAllFilter = require('./s3/api/listAllFilter');
+const deleteFile = require('./s3/api/deleteFile');
 
 console.log(`
   ${chalk.green(
@@ -24,7 +26,12 @@ const options = [
   {
     name: 'List an AWS buckets files that match a "filter" regex',
     input: 'regex',
-    callback: () => {}
+    callback: listAllFilter
+  },
+  {
+    name: 'Delete all files matching a regex from a bucket',
+    input: 'regex',
+    callback: deleteFile
   },
   {
     name: 'Exit',
@@ -32,4 +39,4 @@ const options = [
   }
 ];
 
-const client = require('./client/index.js')(options, { s3, params });
+const client = require('./client')(options, { s3, params });
