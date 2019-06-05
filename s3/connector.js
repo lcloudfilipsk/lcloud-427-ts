@@ -17,7 +17,7 @@ function getS3BucketConnector() {
 }
 
 function getS3BucketParams() {
-  const { AWS_BUCKET } = process.env;
+  const { AWS_BUCKET, AWS_SECRET_ACCESS_KEY } = process.env;
   if (!AWS_BUCKET) throw new Error('Missing AWS_BUCKET env variable');
   return {
     Bucket: AWS_BUCKET,

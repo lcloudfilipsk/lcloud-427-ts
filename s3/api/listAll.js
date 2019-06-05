@@ -1,11 +1,12 @@
 module.exports = function listAllS3BucketFiles({ s3, params }) {
   return new Promise((resolve, reject) => {
-    s3.listObjects(params, (err, data) => {
+    const { Bucket } = params;
+    s3.listObjects({ Bucket }, (err, data) => {
       if (err) {
         reject(err);
         return;
       }
-      resolve(data);
+      resolve(data.Contents);
     });
   })
 };
