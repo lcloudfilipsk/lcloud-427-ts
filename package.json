@@ -1,0 +1,25 @@
+{
+  "name": "lcloud-427-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcloudfilipsk/lcloud-427-ts.git"
+  },
+  "author": "Filip",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lcloudfilipsk/lcloud-427-ts/issues"
+  },
+  "homepage": "https://github.com/lcloudfilipsk/lcloud-427-ts#readme",
+  "dependencies": {
+    "aws-sdk": "^2.468.0",
+    "dotenv": "^8.0.0",
+    "inquirer": "^6.3.1"
+  }
+}
